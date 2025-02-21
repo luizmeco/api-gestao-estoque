@@ -13,7 +13,9 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.4.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "es-object-atoms": "^1.1.1",
     "express": "^4.21.2",
     "mongodb": "^6.13.1"
   },
