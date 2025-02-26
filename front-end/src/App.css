@@ -2,50 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
 }
-#root {
-  max-width: 1280px;
+.bg-dark {
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
-}
-
-table {
-  margin: auto;
-  padding: 1em;
-  border-radius: 0.5em;
-}
-
-form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  font-size: 25px;
-}
-form button{
-  margin: auto;
-}
-form fieldset{
-  margin: auto;
-  padding: 1em;
-  border-radius: 1em;
-  display: flex;
-  gap: 1em;
-}
-form fieldset label{
-  margin-bottom: 10px;
-}
-form fieldset input{
-  margin: auto;
+  height: 100vh;
 }
 
-.div-inputs label{
-  display: flex;
-  flex-direction: column;
-}
-.div-inputs label input{
-  font-size: 25px;
-  margin: auto;
-}
 
 
