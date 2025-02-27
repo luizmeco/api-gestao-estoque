@@ -7,7 +7,7 @@
     "dev": "node --watch server.js",
     "start": "node src/index.js",
     "build": "echo 'No build step required'",
-    "vercel-build": "node src/index.js"
+    "vercel-build": "node ./server.js"
   },
   "type": "module",
   "keywords": [],
