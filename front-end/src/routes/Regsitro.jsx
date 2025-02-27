@@ -81,13 +81,13 @@ function App() {
               <label htmlFor="input-peso" className='form-label'>
                 Peso(Kg)
               </label>
-              <input id='input-peso' className='form-control' type="number" name='peso' value={formData.peso} onChange={handleChange} min={0} required />
+              <input id='input-peso' className='form-control' type="number" name='peso' value={formData.peso} onChange={handleChange} required />
             </div>
             <div className='col-md-6'>
               <label htmlFor="input-valor" className='form-label'>
                 Valor(R$)
               </label>
-              <input id='input-valor' className='form-control' type="number" name='valor' value={formData.valor} onChange={handleChange} min={0} required />
+              <input id='input-valor' className='form-control' type="number" name='valor' value={formData.valor} onChange={handleChange}  required />
             </div>
           </div>
           <div className='row justify-content-center mt-5 mb-5'>

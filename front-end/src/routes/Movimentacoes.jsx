@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../../services/api.js"
 const Movimentacoes = () => {
     //get movimentacoes
     const [dados, setDados] = useState([])
-
     async function getDados() {
 
         try {
@@ -15,31 +14,35 @@ const Movimentacoes = () => {
             console.error("Erro ao consultar os dados:", error);
         }
     }
+    function formatoReal(valor){
+
+        return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
     return (
         <div>
             <h1>Movimentações</h1>
             <div>
-                <button onClick={getDados}>Carregar dados</button>
-                <table border="1">
+                <button className="btn btn-primary btn-lg" onClick={getDados}>Carregar dados</button>
+                <table className="table-transparent table rounded-3 mt-3" border="1">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Data</th>
-                            <th>Situação</th>
-                            <th>Produto</th>
-                            <th>Peso</th>
-                            <th>Valor</th>
+                            <th className="col">#</th>
+                            <th className="col">Data</th>
+                            <th className="col">Situação</th>
+                            <th className="col">Produto</th>
+                            <th className="col">Peso</th>
+                            <th className="col">Valor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {dados.map((item) => (
-                            <tr>
-                                <td>{item.id}</td>
+                        {dados.map((item, index) => (
+                            <tr key={item.id}>
+                                <th>{index}</th>
                                 <td>{item.data}</td>
                                 <td>{item.situacao}</td>
                                 <td>{item.produto}</td>
-                                <td>{item.peso}</td>
-                                <td>{item.valor}</td>
+                                <td>{item.peso} Kg</td>
+                                <td>{formatoReal(item.valor)}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -6,9 +6,9 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
     return (
-        <div className='bg-dark'>
+        <div className='bg-dark pb-3'>
             <NavBar />
-            <div className='col-md-10 mx-auto text-center bg-primary bg-opacity-50 mt-5 rounded-4 fs-2'>
+            <div className='col-md-10 mx-auto text-center bg-primary bg-opacity-50 mt-4 rounded-4 fs-2 p-3 '>
                 <Outlet />
             </div>
         </div>

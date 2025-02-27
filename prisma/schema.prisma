@@ -18,6 +18,6 @@ model Movimentacoes {
   data   String  
   situacao    String
   produto     String
-  peso     Int
+  peso      Float
   valor     Float
 }
