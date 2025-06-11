@@ -1,23 +1,43 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Movimentacoes {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  data   String  
-  situacao    String
-  produto     String
-  peso      Float
-  valor     Float
+model gastos {
+  id             Int      @id @default(autoincrement())
+  data           DateTime @db.Date
+  produto        String   @db.VarChar(255)
+  qtd            Decimal  @db.Decimal(10, 2)
+  valor_unitario Decimal  @db.Decimal(10, 2)
+  total         Decimal  @default(0.00) @db.Decimal(10, 2)
+  
+  @@map("gastos")
+}
+
+model producao {
+  id     Int      @id @default(autoincrement())
+  data   DateTime @db.Date
+  estufa Int
+  peso   Decimal  @db.Decimal(10, 2)
+
+  @@map("producao")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model vendas {
+  id             Int      @id @default(autoincrement())
+  data           DateTime @db.Date
+  cliente        String   @db.VarChar(255)
+  produto        String   @db.VarChar(50)
+  tipo           String   @db.VarChar(20)
+  qtd            Decimal  @db.Decimal(10, 2)
+  valor_unitario Decimal  @db.Decimal(10, 2)
+  valor_total   Decimal  @default(0.00) @db.Decimal(10, 2)
+
+  @@map("vendas")
 }
