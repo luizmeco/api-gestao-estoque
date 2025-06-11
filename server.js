@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 import cors from "cors";
+import { parse } from "dotenv";
 
 const prisma = new PrismaClient();
 
@@ -9,6 +10,8 @@ var app = express();
 app.use(express.json());
 app.use(cors());
 
+
+//Rotas de consulta dos dados
 app.get("/gastos", async (req, res) => {
   var listaMovimentacoes = await prisma.gastos.findMany();
   res.json(listaMovimentacoes);
@@ -24,6 +27,7 @@ app.get("/vendas", async (req, res) => {
   res.json(listaMovimentacoes);
 });
 
+//Rotas de registro
 app.post("/registroGastos", async (req, res) => {
   res.send("Olá Mundo!");
   const dataYMD = req.body.data;
@@ -88,6 +92,29 @@ app.post("/registroProducao", async (req, res) => {
   });
 });
 
+
+//Rotas de exclusão
+app.delete("/deletarGasto/:id", async (req, res) => {
+  const userId = parseInt(req.params.id);
+  await prisma.gastos.delete({
+    where: {
+      id: userId,
+    },
+  });
+  res.status(200).send('Item excluído com sucesso!');
+});
+
+app.delete("/deletarVenda/:id", async (req, res) => {
+  const userId = parseInt(req.params.id);
+  await prisma.vendas.delete({
+    where: {
+      id: userId,
+    },
+  });
+
+  res.status(200).send('Item excluído com sucesso!');
+});
+
 app.put("/atualizar/:id", async (req, res) => {
   const userId = req.params.id;
 
@@ -105,14 +132,6 @@ app.put("/atualizar/:id", async (req, res) => {
   });
 });
 
-app.delete("/deletar/:id", async (req, res) => {
-  const userId = req.params.id;
-  await prisma.movimentacoes.delete({
-    where: {
-      id: userId,
-    },
-  });
-});
 
 app.listen(process.env.PORT);
 
