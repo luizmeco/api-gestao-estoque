@@ -14,7 +14,8 @@ app.use(cors());
 //Rotas de consulta dos dados
 
 app.get("/", async (req, res) => {
-  res.send("Olá Mundo!");
+  var listaMovimentacoes = await prisma.gastos.findMany();
+  res.send(listaMovimentacoes);
 });
 
 app.get("/gastos", async (req, res) => {
