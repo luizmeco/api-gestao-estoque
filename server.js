@@ -18,7 +18,6 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/gastos", async (req, res) => {
-  res.send("Puxou Gastos");
   var listaMovimentacoes = await prisma.gastos.findMany();
   res.json(listaMovimentacoes);
 });
