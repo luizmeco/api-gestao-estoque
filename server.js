@@ -51,11 +51,11 @@ app.post("/registroGastos", async (req, res) => {
       valor_unitario: req.body.valor_unitario,
     },
   });
+  res.status(200).send('Item registrado com sucesso!');
 });
 
 app.post("/registroVendas", async (req, res) => {
   const dataYMD = req.body.data;
-
   // 1. Criar um objeto Date a partir da string yyyy-mm-dd
   // Por padrão, o JavaScript interpreta 'YYYY-MM-DD' como UTC (meia-noite)
   const dataObjeto = new Date(dataYMD);
@@ -73,6 +73,7 @@ app.post("/registroVendas", async (req, res) => {
       valor_unitario: req.body.valor_unitario,
     },
   });
+  res.status(200).send('Item registrado com sucesso!');
 });
 
 app.post("/registroProducao", async (req, res) => {
@@ -92,6 +93,7 @@ app.post("/registroProducao", async (req, res) => {
       peso: req.body.peso,
     },
   });
+  res.status(200).send('Item registrado com sucesso!');
 });
 
 
