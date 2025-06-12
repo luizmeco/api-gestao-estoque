@@ -8,11 +8,7 @@ const prisma = new PrismaClient();
 
 var app = express();
 app.use(express.json());
-app.use(cors({
-  origin: ['https://api-gestao-estoque.vercel.app/']
-  // Ou usar um processo.env.ALLOWED_ORIGINS para carregar do ambiente
-}));
-
+app.use(cors());
 
 //Rotas de consulta dos dados
 
