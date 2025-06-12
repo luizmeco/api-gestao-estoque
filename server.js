@@ -35,7 +35,6 @@ app.get("/vendas", async (req, res) => {
 
 //Rotas de registro
 app.post("/registroGastos", async (req, res) => {
-  res.send("Olá Mundo!");
   const dataYMD = req.body.data;
 
   // 1. Criar um objeto Date a partir da string yyyy-mm-dd
@@ -56,7 +55,6 @@ app.post("/registroGastos", async (req, res) => {
 });
 
 app.post("/registroVendas", async (req, res) => {
-  res.send(req.body);
   const dataYMD = req.body.data;
 
   // 1. Criar um objeto Date a partir da string yyyy-mm-dd
@@ -79,7 +77,6 @@ app.post("/registroVendas", async (req, res) => {
 });
 
 app.post("/registroProducao", async (req, res) => {
-  res.send(req.body);
   const dataYMD = req.body.data;
 
   // 1. Criar um objeto Date a partir da string yyyy-mm-dd
