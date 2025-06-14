@@ -18,12 +18,20 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/gastos", async (req, res) => {
-  var listaMovimentacoes = await prisma.gastos.findMany();
+  var listaMovimentacoes = await prisma.gastos.findMany({
+    orderBy: {
+      data: "desc",
+    },
+  });
   res.json(listaMovimentacoes);
 });
 
 app.get("/producao", async (req, res) => {
-  var listaMovimentacoes = await prisma.producao.findMany();
+  var listaMovimentacoes = await prisma.producao.findMany({
+    orderBy: {
+      data: "desc",
+    },
+  });
   res.json(listaMovimentacoes);
 });
 
