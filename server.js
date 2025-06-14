@@ -119,7 +119,7 @@ app.delete("/deletarVenda/:id", async (req, res) => {
 });
 
 app.put("/atualizarVenda/:id", async (req, res) => {
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id);
 
   const dataYMD = req.body.data;
   // 1. Criar um objeto Date a partir da string yyyy-mm-dd
@@ -147,7 +147,7 @@ app.put("/atualizarVenda/:id", async (req, res) => {
 });
 
 app.put("/atualizarGasto/:id", async (req, res) => {
-  const userId = req.params.id;
+  const userId = parseInt(req.params.id);
 
   const dataYMD = req.body.data;
   // 1. Criar um objeto Date a partir da string yyyy-mm-dd
