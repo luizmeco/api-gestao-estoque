@@ -115,25 +115,61 @@ app.delete("/deletarVenda/:id", async (req, res) => {
       id: userId,
     },
   });
-
   res.status(200).send('Item excluído com sucesso!');
 });
 
-app.put("/atualizar/:id", async (req, res) => {
+app.put("/atualizarVenda/:id", async (req, res) => {
   const userId = req.params.id;
 
-  await prisma.movimentacoes.update({
+  const dataYMD = req.body.data;
+  // 1. Criar um objeto Date a partir da string yyyy-mm-dd
+  // Por padrão, o JavaScript interpreta 'YYYY-MM-DD' como UTC (meia-noite)
+  const dataObjeto = new Date(dataYMD);
+
+  // 2. Converter o objeto Date para a string ISO 8601
+  // O método .toISOString() retorna a data no formato ISO 8601 em UTC
+  const dataISO = dataObjeto.toISOString();
+
+  await prisma.vendas.update({
     where: {
       id: userId,
     },
     data: {
-      data: req.body.data,
-      situacao: req.body.situacao,
+      data: dataISO,
+      cliente: req.body.cliente,
       produto: req.body.produto,
-      peso: req.body.peso,
-      valor: req.body.valor,
+      tipo: req.body.tipo,
+      qtd: req.body.qtd,
+      valor_unitario: req.body.valor_unitario,
     },
   });
+  res.status(200).send('Item editado com sucesso!');
+});
+
+app.put("/atualizarGasto/:id", async (req, res) => {
+  const userId = req.params.id;
+
+  const dataYMD = req.body.data;
+  // 1. Criar um objeto Date a partir da string yyyy-mm-dd
+  // Por padrão, o JavaScript interpreta 'YYYY-MM-DD' como UTC (meia-noite)
+  const dataObjeto = new Date(dataYMD);
+
+  // 2. Converter o objeto Date para a string ISO 8601
+  // O método .toISOString() retorna a data no formato ISO 8601 em UTC
+  const dataISO = dataObjeto.toISOString();
+
+  await prisma.gastos.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      data: dataISO,
+      produto: req.body.produto,
+      qtd: req.body.qtd,
+      valor_unitario: req.body.valor_unitario,
+    },
+  });
+  res.status(200).send('Item editado com sucesso!');
 });
 
 
