@@ -36,7 +36,11 @@ app.get("/producao", async (req, res) => {
 });
 
 app.get("/vendas", async (req, res) => {
-  var listaMovimentacoes = await prisma.vendas.findMany();
+  var listaMovimentacoes = await prisma.vendas.findMany({
+    orderBy: {
+      data: "desc",
+    },
+  });
   res.json(listaMovimentacoes);
 });
 
